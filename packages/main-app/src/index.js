@@ -1,43 +1,7 @@
-window.a = "main ";
-
-class Sandbox {
-  constructor() {
-    this.proxy = null;
-    this.sandboxWindow = {};
-    this.init();
-  }
-
-  init() {
-    this.proxy = new Proxy(window, {
-      set: (target, key, value) => {
-        console.log("set", key, value);
-        this.sandboxWindow[key] = value;
-        return true;
-      },
-      get: (target, key) => {
-        console.log("get", key);
-        if (key in this.sandboxWindow) {
-          return this.sandboxWindow[key];
-        }
-        return window[key];
-      },
-    });
-  }
-
-  getProxy() {
-    return this.proxy;
-  }
-
-  clear() {
-    this.sandboxWindow = {};
-  }
-}
-
 class MicroFrontend {
   constructor() {
     this.apps = [];
     this.currentApp = null;
-    this.sandbox = new Sandbox();
 
     window.addEventListener("popstate", () => this.routeChanged());
     window.addEventListener("load", () => this.routeChanged());
@@ -66,7 +30,6 @@ class MicroFrontend {
     ) {
       this.currentApp.unmountFn();
       this.currentApp = null;
-      this.sandbox.clear();
     }
 
     if (
@@ -92,24 +55,12 @@ microFrontend.registerApp(
     return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = vueAppUrl;
-      script.onload = () => {
-        // 将子应用挂载到沙箱中
-        const sandboxProxy = microFrontend.sandbox.getProxy();
-        sandboxProxy.vueApp = window.vueApp;
-        delete window.vueApp;
-        resolve();
-      };
+      script.onload = () => resolve();
       document.head.appendChild(script);
     });
   },
-  () => {
-    const sandboxProxy = microFrontend.sandbox.getProxy();
-    sandboxProxy.vueApp.mount("#app-container");
-  },
-  () => {
-    const sandboxProxy = microFrontend.sandbox.getProxy();
-    sandboxProxy.vueApp.unmount();
-  }
+  () => window.vueApp.mount(document.getElementById("app-container")),
+  () => window.vueApp.unmount()
 );
 
 // 类似地修改React应用加载
@@ -121,22 +72,10 @@ microFrontend.registerApp(
     return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = reactAppUrl;
-      script.onload = () => {
-        // 将子应用挂载到沙箱中
-        const sandboxProxy = microFrontend.sandbox.getProxy();
-        sandboxProxy.reactApp = window.reactApp;
-        delete window.reactApp;
-        resolve();
-      };
+      script.onload = () => resolve();
       document.head.appendChild(script);
     });
   },
-  () => {
-    const sandboxProxy = microFrontend.sandbox.getProxy();
-    sandboxProxy.reactApp.mount(document.getElementById("app-container"));
-  },
-  () => {
-    const sandboxProxy = microFrontend.sandbox.getProxy();
-    sandboxProxy.reactApp.unmount();
-  }
+  () => window.reactApp.mount(document.getElementById("app-container")),
+  () => window.reactApp.unmount()
 );

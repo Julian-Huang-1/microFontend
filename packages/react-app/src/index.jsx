@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
 
 let root = null;
 
 function mount(container) {
-  root = ReactDOM.createRoot(container);
-  root.render(<App />);
+  root = container;
+  ReactDOM.createRoot(container).render(<App />);
 }
 
 function unmount() {
   if (root) {
-    root.unmount();
-    root = null;
+    root.innerHtml = "";
   }
 }
 
