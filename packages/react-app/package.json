@@ -1,0 +1,25 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "start": "rollup -c && serve -s dist -p 9999 --cors"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-copy": "^3.5.0",
+    "serve": "^14.0.1"
+  }
+}

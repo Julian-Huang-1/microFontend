@@ -1,0 +1,16 @@
+{
+  "name": "micro-frontend-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:main": "pnpm --filter main-app dev",
+    "dev:vue": "pnpm --filter vue-app dev",
+    "dev:react": "pnpm --filter react-app dev",
+    "build": "pnpm --filter \"*\" build",
+    "start": "pnpm --filter main-app start"
+  },
+  "devDependencies": {
+    "rollup": "^2.79.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

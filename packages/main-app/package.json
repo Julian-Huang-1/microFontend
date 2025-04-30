@@ -1,0 +1,23 @@
+{
+  "name": "main-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "NODE_ENV=development rollup -c -w",
+    "build": "NODE_ENV=production rollup -c",
+    "start": "NODE_ENV=development rollup -c && serve -s dist"
+  },
+  "dependencies": {
+    "react-app": "workspace:*",
+    "vue-app": "workspace:*"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "dotenv": "^16.5.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.0",
+    "serve": "^14.0.1"
+  }
+}
