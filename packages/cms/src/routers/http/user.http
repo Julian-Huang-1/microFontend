@@ -1,0 +1,45 @@
+### 获取用户列表
+GET http://localhost:3000/user.list?input=%7B%22limit%22%3A20%2C%22offset%22%3A0%7D HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTI1ODkzLCJleHAiOjE3NDcxMzA2OTN9.5J3ktn-v555mfO1qmqJ9IHO0RhDoSQRR3sBbNBNoHZc
+
+
+
+### 获取单个用户
+GET http://localhost:3000/user.byId?input=%7B%22id%22%3A1%7D HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTI1ODkzLCJleHAiOjE3NDcxMzA2OTN9.5J3ktn-v555mfO1qmqJ9IHO0RhDoSQRR3sBbNBNoHZc
+
+
+
+### 创建用户
+POST http://localhost:3000/user.create HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTI1ODkzLCJleHAiOjE3NDcxMzA2OTN9.5J3ktn-v555mfO1qmqJ9IHO0RhDoSQRR3sBbNBNoHZc
+
+{
+    "email":"abccc@example.com",
+    "password":"admin123",
+    "name":"abccc"
+}
+
+
+### 更新用户 
+POST http://localhost:3000/user.update HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTI1ODkzLCJleHAiOjE3NDcxMzA2OTN9.5J3ktn-v555mfO1qmqJ9IHO0RhDoSQRR3sBbNBNoHZc
+
+{
+    "id":7,
+    "name":"abcccxxxxxx"
+}   
+
+
+### 删除用户
+POST http://localhost:3000/user.delete HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTI1ODkzLCJleHAiOjE3NDcxMzA2OTN9.5J3ktn-v555mfO1qmqJ9IHO0RhDoSQRR3sBbNBNoHZc
+
+{
+    "id":7
+}

@@ -1,0 +1,27 @@
+### 登陆接口
+POST http://localhost:3000/auth.login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"admin@example.com",
+    "password":"admin123"
+}
+
+
+### 注册接口
+POST http://localhost:3000/auth.register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"abccc@example.com",
+    "password":"admin123",
+    "name":"abccc"
+}
+
+
+
+### 测试过期JWT令牌
+GET http://localhost:3000/auth.me HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIxMjMiLCJpYXQiOjE3NDY1MjYyMjAsImV4cCI6MTc0NjUyOTgyMH0.AAvJeEBgmggktT3Nru3M0kRv8RCvHDCHrUVCQeL1bS8
+

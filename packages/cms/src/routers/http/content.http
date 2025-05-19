@@ -1,0 +1,53 @@
+
+### 创建内容
+POST http://localhost:3000/content.create HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTMwNzAzLCJleHAiOjE3NDcxMzU1MDN9.0JtdcirnPuVXNnRAR_cv7-eaqbeEhGVC0Fbh8gGWQMA
+
+{
+    "title":"测试内容",
+    "slug":"test-content",
+    "content":"测试内容",
+    "status":"published"
+}
+
+
+### 获取内容列表 (使用GET)
+#{
+#   limit: 1,
+#   offset: 0,
+#   status: "draft",
+# }
+
+GET http://localhost:3000/content.list?input=%7B%22limit%22%3A1%2C%22offset%22%3A0%2C%22status%22%3A%22draft%22%7D HTTP/1.1
+
+
+
+### 获取单个内容
+# {
+#     id:10
+# }
+GET http://localhost:3000/content.byId?input=%7B%22id%22%3A10%7D HTTP/1.1    
+
+
+### 更新内容
+POST http://localhost:3000/content.update HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTMwNzAzLCJleHAiOjE3NDcxMzU1MDN9.0JtdcirnPuVXNnRAR_cv7-eaqbeEhGVC0Fbh8gGWQMA
+
+{   
+    "id":10,
+    "title":"测试内容",
+    "slug":"test-content",
+    "content":"测试内容999",
+    "status":"published"
+}
+
+### 删除内容
+POST http://localhost:3000/content.delete HTTP/1.1
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQ2NTMwNzAzLCJleHAiOjE3NDcxMzU1MDN9.0JtdcirnPuVXNnRAR_cv7-eaqbeEhGVC0Fbh8gGWQMA
+
+{
+    "id":10
+}   
