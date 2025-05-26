@@ -72,16 +72,13 @@ export function ThemeSaveDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-[550px] p-0 pt-6 overflow-hidden rounded-lg border shadow-lg gap-6">
+      <DialogContent className="gap-6 overflow-hidden rounded-lg border p-0 pt-6 shadow-lg sm:max-w-[550px]">
         <DialogHeader className="px-6">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 px-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-6">
             <FormField
               control={form.control}
               name="themeName"
@@ -97,8 +94,8 @@ export function ThemeSaveDialog({
             />
           </form>
         </Form>
-        <DialogFooter className="bg-muted/30 px-6 py-4 border-t">
-          <div className="flex items-center justify-end w-full gap-2">
+        <DialogFooter className="bg-muted/30 border-t px-6 py-4">
+          <div className="flex w-full items-center justify-end gap-2">
             <Button
               onClick={() => onOpenChange(false)}
               variant="ghost"
@@ -109,11 +106,7 @@ export function ThemeSaveDialog({
             </Button>
             <Button
               type="submit"
-              disabled={
-                isSaving ||
-                !form.formState.isValid ||
-                form.formState.isSubmitting
-              }
+              disabled={isSaving || !form.formState.isValid || form.formState.isSubmitting}
               size="sm"
               onClick={form.handleSubmit(onSubmit)}
             >
