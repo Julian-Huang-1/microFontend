@@ -32,7 +32,7 @@ export function AuthDialog({
   const [isSignIn, setIsSignIn] = useState(initialMode === "signin");
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [isGithubLoading, setIsGithubLoading] = useState(false);
-
+  console.log(pathname);
   useEffect(() => {
     if (open) {
       setIsSignIn(initialMode === "signin");
