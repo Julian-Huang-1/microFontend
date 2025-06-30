@@ -7,9 +7,7 @@ export default async function Component({ params }: { params: Promise<{ themeId:
     <div>
       <Header />
       <main>
-        <Suspense fallback={<Loading />}>
-          <Editor />
-        </Suspense>
+        <Suspense fallback={<Loading />}>{/* <Editor /> */}</Suspense>
       </main>
     </div>
   );
