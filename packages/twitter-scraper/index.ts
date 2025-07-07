@@ -13,9 +13,10 @@ const ask = (question: string): Promise<string> => {
     rl.question(question, resolve);
   });
 };
+const isDev = process.env.NODE_ENV === "development";
 
 const browser = await chromium.launch({
-  headless: true,
+  headless: !isDev,
   args: [
     "--lang=en-US",
     "--no-sandbox",
