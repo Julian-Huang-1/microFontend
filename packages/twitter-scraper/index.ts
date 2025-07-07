@@ -42,6 +42,13 @@ await page.fill('input[autocomplete="username"]', username);
 await page.click("//button//span[text()='Next']");
 await page.waitForTimeout(2000);
 printPageDOM(page);
+const fullPagePath = `screenshots/fullpage-${Date.now()}.png`;
+await page.screenshot({
+  path: fullPagePath,
+  fullPage: true,
+});
+console.log(`✅ 全页面截图已保存: ${fullPagePath}`);
+
 await page.fill('input[autocomplete="current-password"]', password);
 await page.click("//button//span[text()='Log in']");
 await page.waitForTimeout(2000);
