@@ -13,8 +13,13 @@ const ask = (question: string): Promise<string> => {
   });
 };
 
-const browser = await chromium.launch({ headless: false });
-const page = await browser.newPage();
+const browser = await chromium.launch({
+  headless: false,
+  args: ["--lang=en-US"],
+});
+const page = await browser.newPage({
+  locale: "en-US",
+});
 
 await page.goto("https://x.com/home");
 
@@ -23,11 +28,11 @@ const username = process.env.TWITTER_USERNAME || "";
 const password = process.env.TWITTER_PASSWORD || "";
 
 await page.fill('input[autocomplete="username"]', username);
-await page.click("//button//span[text()='下一步']");
+await page.click("//button//span[text()='Next']");
 await page.waitForTimeout(2000);
 
 await page.fill('input[autocomplete="current-password"]', password);
-await page.click("//button//span[text()='登录']");
+await page.click("//button//span[text()='Log in']");
 await page.waitForTimeout(2000);
 
 // 动态加载抓取函数
