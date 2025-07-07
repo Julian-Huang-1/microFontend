@@ -1,6 +1,7 @@
 import { chromium } from "playwright";
 import * as readline from "readline";
 import { saveUsernamesToDB } from "./src/db/database";
+import { printPageDOM } from "./src/lib/printPageDom";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -40,7 +41,7 @@ const password = process.env.TWITTER_PASSWORD || "";
 await page.fill('input[autocomplete="username"]', username);
 await page.click("//button//span[text()='Next']");
 await page.waitForTimeout(2000);
-
+printPageDOM(page);
 await page.fill('input[autocomplete="current-password"]', password);
 await page.click("//button//span[text()='Log in']");
 await page.waitForTimeout(2000);
