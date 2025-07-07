@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import * as readline from "readline";
 import { saveUsernamesToDB } from "./src/db/database";
-import { printPageDOM } from "./src/lib/printPageDom";
+import { printPageDOM } from "./src/lib/printPageDOM";
 
 const rl = readline.createInterface({
   input: process.stdin,
