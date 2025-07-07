@@ -14,11 +14,21 @@ const ask = (question: string): Promise<string> => {
 };
 
 const browser = await chromium.launch({
-  headless: false,
-  args: ["--lang=en-US"],
+  headless: true,
+  args: [
+    "--lang=en-US",
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+    "--disable-web-security",
+    "--disable-features=VizDisplayCompositor",
+    "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  ],
 });
 const page = await browser.newPage({
   locale: "en-US",
+  viewport: { width: 1920, height: 1080 }, // 设置视口大小
 });
 
 await page.goto("https://x.com/home");
