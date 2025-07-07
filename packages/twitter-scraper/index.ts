@@ -37,6 +37,7 @@ await page.goto("https://x.com/home");
 // login
 const username = process.env.TWITTER_USERNAME || "";
 const password = process.env.TWITTER_PASSWORD || "";
+const email = process.env.TWITTER_EMAIL || "";
 
 await page.fill('input[autocomplete="username"]', username);
 await page.click("//button//span[text()='Next']");
@@ -49,8 +50,22 @@ await page.screenshot({
 });
 console.log(`✅ 全页面截图已保存: ${fullPagePath}`);
 
-await page.fill('input[autocomplete="current-password"]', password);
-await page.click("//button//span[text()='Log in']");
+const passwordInput = await page.locator(
+  'input[autocomplete="current-password"]'
+);
+const isPasswordInputVisible = await passwordInput
+  .isVisible()
+  .catch(() => false);
+
+if (isPasswordInputVisible) {
+  console.log("🔑 找到密码输入框，填写密码...");
+  await page.fill('input[autocomplete="current-password"]', password);
+  await page.click("//button//span[text()='Log in']");
+} else {
+  await page.fill("input", email);
+  await page.click("//button//span[text()='Next']");
+}
+
 await page.waitForTimeout(2000);
 
 // 动态加载抓取函数
